@@ -4,7 +4,7 @@ A Home Assistant integration for local polling of SolaX inverters.
 
 ## Features
 
-- Polls inverter data every 10 seconds
+- Polls inverter data every 15 seconds
 - Provides power, voltage, current, energy, and frequency sensors
 - Default-disabled sensors: PV2 and exported values
 - Local polling integration with support for config flow
