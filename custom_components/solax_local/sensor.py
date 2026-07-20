@@ -21,7 +21,7 @@ from homeassistant.helpers.device_registry import DeviceInfo
 
 _LOGGER = logging.getLogger(__name__)
 
-SCAN_INTERVAL = timedelta(seconds=30)
+SCAN_INTERVAL = timedelta(seconds=10)
 DOMAIN = "solax_local"
 
 def div10(val): return val / 10.0
@@ -33,21 +33,21 @@ def to_signed32(val):
     return val
 
 DECODER_MAP = {
-    "AC Voltage": (0, UnitOfElectricPotential.VOLT, SensorDeviceClass.VOLTAGE, SensorStateClass.MEASUREMENT, div10),
-    "AC Output Current": (1, UnitOfElectricCurrent.AMPERE, SensorDeviceClass.CURRENT, SensorStateClass.MEASUREMENT, div10),
-    "AC Output Power": (3, UnitOfPower.WATT, SensorDeviceClass.POWER, SensorStateClass.MEASUREMENT, None),
-    "PV1 Voltage": (4, UnitOfElectricPotential.VOLT, SensorDeviceClass.VOLTAGE, SensorStateClass.MEASUREMENT, div10),
-    "PV2 Voltage": (5, UnitOfElectricPotential.VOLT, SensorDeviceClass.VOLTAGE, SensorStateClass.MEASUREMENT, div10),
-    "PV1 Current": (8, UnitOfElectricCurrent.AMPERE, SensorDeviceClass.CURRENT, SensorStateClass.MEASUREMENT, div10),
-    "PV2 Current": (9, UnitOfElectricCurrent.AMPERE, SensorDeviceClass.CURRENT, SensorStateClass.MEASUREMENT, div10),
-    "PV1 Power": (13, UnitOfPower.WATT, SensorDeviceClass.POWER, SensorStateClass.MEASUREMENT, None),
-    "PV2 Power": (14, UnitOfPower.WATT, SensorDeviceClass.POWER, SensorStateClass.MEASUREMENT, None),
-    "AC Frequency": (2, UnitOfFrequency.HERTZ, SensorDeviceClass.FREQUENCY, SensorStateClass.MEASUREMENT, div100),
-    "Total Generated Energy": ((19, 20), UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div10),
-    "Today's Generated Energy": (21, UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div10),
-    "Exported Power": ((72, 73), UnitOfPower.WATT, SensorDeviceClass.POWER, SensorStateClass.MEASUREMENT, to_signed32),
-    "Total Export Energy": ((74, 75), UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div100),
-    "Total Import Energy": ((76, 77), UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div100),
+    "AC Voltage": (0, UnitOfElectricPotential.VOLT, SensorDeviceClass.VOLTAGE, SensorStateClass.MEASUREMENT, div10, True),
+    "AC Output Current": (1, UnitOfElectricCurrent.AMPERE, SensorDeviceClass.CURRENT, SensorStateClass.MEASUREMENT, div10, True),
+    "AC Output Power": (3, UnitOfPower.WATT, SensorDeviceClass.POWER, SensorStateClass.MEASUREMENT, None, True),
+    "PV1 Voltage": (4, UnitOfElectricPotential.VOLT, SensorDeviceClass.VOLTAGE, SensorStateClass.MEASUREMENT, div10, True),
+    "PV2 Voltage": (5, UnitOfElectricPotential.VOLT, SensorDeviceClass.VOLTAGE, SensorStateClass.MEASUREMENT, div10, False),
+    "PV1 Current": (8, UnitOfElectricCurrent.AMPERE, SensorDeviceClass.CURRENT, SensorStateClass.MEASUREMENT, div10, True),
+    "PV2 Current": (9, UnitOfElectricCurrent.AMPERE, SensorDeviceClass.CURRENT, SensorStateClass.MEASUREMENT, div10, False),
+    "PV1 Power": (13, UnitOfPower.WATT, SensorDeviceClass.POWER, SensorStateClass.MEASUREMENT, None, True),
+    "PV2 Power": (14, UnitOfPower.WATT, SensorDeviceClass.POWER, SensorStateClass.MEASUREMENT, None, False),
+    "AC Frequency": (2, UnitOfFrequency.HERTZ, SensorDeviceClass.FREQUENCY, SensorStateClass.MEASUREMENT, div100, True),
+    "Total Generated Energy": ((19, 20), UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div10, True),
+    "Today's Generated Energy": (21, UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div10, True),
+    "Exported Power": ((72, 73), UnitOfPower.WATT, SensorDeviceClass.POWER, SensorStateClass.MEASUREMENT, to_signed32, False),
+    "Total Export Energy": ((74, 75), UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div100, False),
+    "Total Import Energy": ((76, 77), UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div100, True),
 }
 
 async def async_setup_entry(hass, entry, async_add_entities):
@@ -146,6 +146,7 @@ class SolaXSensor(SensorEntity):
         self._attr_native_unit_of_measurement = config_data[1]
         self._attr_device_class = config_data[2]
         self._attr_state_class = config_data[3]
+        self._attr_entity_registry_enabled_default = config_data[5]
         
         self._attr_unique_id = f"solax_{entry.entry_id}_{sensor_name.replace(' ', '_').lower()}"
 
