@@ -1,0 +1,11 @@
+{
+  "domain": "solax",
+  "name": "SolaX Local",
+  "version": "1.1.0",
+  "documentation": "https://github.com/Disco402/solax_local",
+  "issue_tracker": "https://github.com/Disco402/solax_local/issues",
+  "codeowners": ["@Disco402"],
+  "config_flow": true,
+  "iot_class": "local_polling",
+  "integration_type": "device"
+}
