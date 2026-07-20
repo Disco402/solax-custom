@@ -30,5 +30,6 @@ The integration exposes sensors for inverter values. By default, the following a
 - `PV2 Power`
 - `Exported Power`
 - `Total Export Energy`
+- `Total Import Energy`
 
 You can enable them later from Home Assistant's entity settings.

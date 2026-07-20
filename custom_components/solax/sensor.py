@@ -47,7 +47,7 @@ DECODER_MAP = {
     "Today's Generated Energy": (21, UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div10, True),
     "Exported Power": ((72, 73), UnitOfPower.WATT, SensorDeviceClass.POWER, SensorStateClass.MEASUREMENT, to_signed32, False),
     "Total Export Energy": ((74, 75), UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div100, False),
-    "Total Import Energy": ((76, 77), UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div100, True),
+    "Total Import Energy": ((76, 77), UnitOfEnergy.KILO_WATT_HOUR, SensorDeviceClass.ENERGY, SensorStateClass.TOTAL_INCREASING, div100, False),
 }
 
 async def async_setup_entry(hass, entry, async_add_entities):
