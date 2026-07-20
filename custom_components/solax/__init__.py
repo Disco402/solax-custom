@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.const import Platform
 
-DOMAIN = "solax_local"
+DOMAIN = "solax"
 PLATFORMS = [Platform.SENSOR]
 _LOGGER = logging.getLogger(__name__)
 

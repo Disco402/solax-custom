@@ -11,7 +11,7 @@ A Home Assistant integration for local polling of SolaX inverters.
 
 ## Installation
 
-1. Copy the `custom_components/solax_local` folder into your Home Assistant `custom_components` directory.
+1. Copy the `custom_components/solax` folder into your Home Assistant `custom_components` directory.
 2. Restart Home Assistant.
 3. Go to **Settings > Devices & Services > Add Integration**.
 4. Search for `SolaX Local` and enter the inverter host IP and password.

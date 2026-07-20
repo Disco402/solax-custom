@@ -3,7 +3,7 @@ import aiohttp
 from homeassistant import config_entries
 from homeassistant.const import CONF_HOST, CONF_PASSWORD
 
-DOMAIN = "solax_local"
+DOMAIN = "solax"
 
 class SolaXConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for SolaX Local."""
