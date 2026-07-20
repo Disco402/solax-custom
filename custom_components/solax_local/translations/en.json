@@ -1,0 +1,21 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to SolaX Inverter",
+        "description": "Enter the local IP address and Wi-Fi password for your SolaX inverter.",
+        "data": {
+          "host": "IP Address",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect. Is the IP address correct?",
+      "invalid_auth": "Invalid authentication. Is the password correct?"
+    },
+    "abort": {
+      "already_configured": "This SolaX Inverter is already configured."
+    }
+  }
+}

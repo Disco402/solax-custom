@@ -1,0 +1,11 @@
+{
+  "domain": "solax_local",
+  "name": "SolaX Local",
+  "version": "1.0.0",
+  "documentation": "https://github.com/YOUR_GITHUB_NAME/YOUR_REPO_NAME",
+  "issue_tracker": "https://github.com/YOUR_GITHUB_NAME/YOUR_REPO_NAME/issues",
+  "codeowners": ["@YOUR_GITHUB_NAME"],
+  "config_flow": true,
+  "iot_class": "local_polling",
+  "integration_type": "device"
+}
